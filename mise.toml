@@ -20,3 +20,10 @@ run = "bunx vite"
 description = "Build project with Vite"
 depends = ["install"]
 run = "bunx vite build"
+
+[tasks.publish]
+description = "Update main bookmark and push scaffold to GitHub"
+run = """
+  jj bookmark set main -r @
+  jj git push --remote origin --bookmark main
+"""
