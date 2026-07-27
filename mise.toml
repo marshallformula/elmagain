@@ -1,0 +1,22 @@
+[tools]
+bun = "latest"
+
+[env]
+# Expose executables in node_modules/.bin directly to tasks and shell
+_.path = ['{{config_root}}/node_modules/.bin']
+
+[tasks.install]
+description = "Install dependencies using Bun"
+run = "bun install"
+sources = ["package.json"]
+outputs = ["bun.lock", "node_modules"]
+
+[tasks.dev]
+description = "Start Vite development server"
+depends = ["install"]
+run = "bunx vite"
+
+[tasks.build]
+description = "Build project with Vite"
+depends = ["install"]
+run = "bunx vite build"
